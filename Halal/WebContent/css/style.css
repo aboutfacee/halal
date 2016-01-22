@@ -145,6 +145,32 @@ a.btn_2, .btn_2{
 a.btn_2:hover, .btn_2:hover{
 	background:#333;
 }
+
+a.btn_3, .btn_3{
+	border: none;
+	font-family: inherit;
+	font-size: inherit;
+	color:#fff;
+	background: #85c99d;
+	cursor: pointer;
+	padding: 10px 20px;
+	outline: none;
+	font-size:12px;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	text-transform:uppercase;
+	font-weight:600;
+	display:inline-block;
+	text-align:center;
+	width: 100%;
+}
+a.btn_3:hover, .btn_3:hover{
+	background:#333;
+}
 /*두호 추가-------------------------------------------*/
 
 
