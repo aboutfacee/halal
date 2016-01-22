@@ -67,41 +67,7 @@
                 </div>
                 <a href="#" class="open_close" id="close_in"><i class="icon_close"></i></a>
                  <ul>
-                    <li class="submenu">
-                    <a href="javascript:void(0);" class="show-submenu">Home<i class="icon-down-open-mini"></i></a>
-                    <ul>
-                        <li><a href="index.html">Home Video background</a></li>
-                        <li><a href="index_2.html">Home Static image</a></li>
-                        <li><a href="index_3.html">Home Text rotator</a></li>
-                        <li><a href="index_8.html">Home Layer slider</a></li>
-                        <li><a href="index_4.html">Home Cookie bar</a></li>
-                        <li><a href="index_5.html">Home Popup</a></li>
-                        <li><a href="index_6.html">Home Mobile synthetic</a></li>
-                        <li><a href="index_7.html">Top Menu version 2</a></li>
-                    </ul>
-                    </li>
-                    <li><a href="list_page.html">Restaurants</a></li>
-                    <li><a href="about.html">About us</a></li>
-                    <li><a href="faq.html">Faq</a></li>
-                    <li class="submenu">
-                    <a href="javascript:void(0);" class="show-submenu">Pages<i class="icon-down-open-mini"></i></a>
-                    <ul>
-                        <li><a href="detail_page.html">Restaurant Menu</a></li>
-                        <li><a href="cart.html">Order step 1</a></li>
-                        <li><a href="cart_2.html">Order step 2</a></li>
-                        <li><a href="cart_3.html">Order step 3</a></li>
-                        <li><a href="detail_page_2.html">Restaurant detail page</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="grid_list.html">Grid list</a></li>
-                        <li><a href="contacts.html">Contacts</a></li>
-                        <li><a href="coming_soon/index.html">Coming soon page</a></li>
-                        <li><a href="shortcodes.html">Shortcodes</a></li>
-                        <li><a href="icon_pack_1.html">Icon pack 1</a></li>
-                        <li><a href="icon_pack_2.html">Icon pack 2</a></li>
-                    </ul>
-                    </li>
                     <li><a href="#0" data-toggle="modal" data-target="#login_2">Login</a></li>
-                    <li><a href="#0">Purchase this template</a></li>
                 </ul>
             </div><!-- End main-menu -->
             </nav>
@@ -109,7 +75,7 @@
     </div><!-- End container -->
     </header>
     <!-- End Header =============================================== -->
-
+    
 <!-- SubHeader =============================================== -->
 <section class="parallax-window" data-parallax="scroll" data-image-src="img/sub_header_2.jpg" data-natural-width="1400" data-natural-height="470">
     <div id="subheader">
@@ -157,7 +123,7 @@
 					</thead>
 					<tbody>
 					<tr>
-						<td onclick="menuDetail()" >
+						<td data-toggle="modal" data-target="#menuDetail">
 							<table>
 							<tr>
 								<td>
@@ -179,7 +145,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td>
+						<td data-toggle="modal" data-target="#menuDetail">
 							<table>
 							<tr>
 								<td>
@@ -201,7 +167,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td>
+						<td data-toggle="modal" data-target="#menuDetail">
 							<table>
 							<tr>
 								<td>
@@ -223,7 +189,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td>
+						<td data-toggle="modal" data-target="#menuDetail">
 							<table>
 							<tr>
 								<td>
@@ -245,7 +211,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td>
+						<td data-toggle="modal" data-target="#menuDetail">
 							<table>
 							<tr>
 								<td>
@@ -267,7 +233,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td>
+						<td data-toggle="modal" data-target="#menuDetail">
 							<table>
 							<tr>
 								<td>
@@ -289,7 +255,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td>
+						<td data-toggle="modal" data-target="#menuDetail">
 							<table>
 							<tr>
 								<td>
@@ -441,21 +407,21 @@
     
 <!-- Login modal -->   
 <div class="modal fade" id="login_2" tabindex="-1" role="dialog" aria-labelledby="myLogin" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content modal-popup">
-				<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
-				<form action="#" class="popup-form" id="myLogin">
-                	<div class="login_icon"><i class="icon_lock_alt"></i></div>
-					<input type="text" class="form-control form-white" placeholder="Username">
-					<input type="text" class="form-control form-white" placeholder="Password">
-					<div class="text-left">
-						<a href="#">Forgot Password?</a>
-					</div>
-					<button type="submit" class="btn btn-submit">Submit</button>
-				</form>
-			</div>
+	<div class="modal-dialog">
+		<div class="modal-content modal-popup">
+			<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
+			<form action="#" class="popup-form" id="myLogin">
+               	<div class="login_icon"><i class="icon_lock_alt"></i></div>
+				<input type="text" class="form-control form-white" placeholder="Username">
+				<input type="text" class="form-control form-white" placeholder="Password">
+				<div class="text-left">
+					<a href="#">Forgot Password?</a>
+				</div>
+				<button type="submit" class="btn btn-submit">Submit</button>
+			</form>
 		</div>
-	</div><!-- End modal -->   
+	</div>
+</div><!-- End modal -->   
     
 <!-- Register modal -->   
 <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myRegister" aria-hidden="true">
@@ -507,6 +473,18 @@
 	</div>
 </div><!-- End Privacy Policy modal -->
    
+<!-- Menu Detail modal -->   
+<div class="modal fade" id="menuDetail" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content modal-popup">
+		<h2>Menu Detail</h2>
+			<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
+			메뉴 상세 정보 노출
+		</div>
+	</div>
+</div><!-- End Privacy Policy modal -->
+  
+  
 <!-- COMMON SCRIPTS -->
 <script src="js/jquery-1.11.2.min.js"></script>
 <script src="js/common_scripts_min.js"></script>
@@ -534,11 +512,6 @@
 	    }
 	  });
 	});
- 
-function menuDetail() {
-	alert("asdfasdfasd");
-	
-}
 </script>
 
 </body>

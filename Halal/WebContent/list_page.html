@@ -69,41 +69,7 @@
                 </div>
                 <a href="#" class="open_close" id="close_in"><i class="icon_close"></i></a>
                  <ul>
-                    <li class="submenu">
-                    <a href="javascript:void(0);" class="show-submenu">Home<i class="icon-down-open-mini"></i></a>
-                    <ul>
-                        <li><a href="index.html">Home Video background</a></li>
-                        <li><a href="index_2.html">Home Static image</a></li>
-                        <li><a href="index_3.html">Home Text rotator</a></li>
-                        <li><a href="index_8.html">Home Layer slider</a></li>
-                        <li><a href="index_4.html">Home Cookie bar</a></li>
-                        <li><a href="index_5.html">Home Popup</a></li>
-                        <li><a href="index_6.html">Home Mobile synthetic</a></li>
-                        <li><a href="index_7.html">Top Menu version 2</a></li>
-                    </ul>
-                    </li>
-                    <li><a href="list_page.html">Restaurants</a></li>
-                    <li><a href="about.html">About us</a></li>
-                    <li><a href="faq.html">Faq</a></li>
-                    <li class="submenu">
-                    <a href="javascript:void(0);" class="show-submenu">Pages<i class="icon-down-open-mini"></i></a>
-                    <ul>
-                        <li><a href="detail_page.html">Restaurant Menu</a></li>
-                        <li><a href="cart.html">Order step 1</a></li>
-                        <li><a href="cart_2.html">Order step 2</a></li>
-                        <li><a href="cart_3.html">Order step 3</a></li>
-                        <li><a href="detail_page_2.html">Restaurant detail page</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="grid_list.html">Grid list</a></li>
-                        <li><a href="contacts.html">Contacts</a></li>
-                        <li><a href="coming_soon/index.html">Coming soon page</a></li>
-                        <li><a href="shortcodes.html">Shortcodes</a></li>
-                        <li><a href="icon_pack_1.html">Icon pack 1</a></li>
-                        <li><a href="icon_pack_2.html">Icon pack 2</a></li>
-                    </ul>
-                    </li>
                     <li><a href="#0" data-toggle="modal" data-target="#login_2">Login</a></li>
-                    <li><a href="#0">Purchase this template</a></li>
                 </ul>
             </div><!-- End main-menu -->
             </nav>
@@ -111,7 +77,7 @@
     </div><!-- End container -->
     </header>
     <!-- End Header =============================================== -->
-
+    
 <!-- SubHeader =============================================== -->
 <section class="parallax-window" id="short" data-parallax="scroll" data-image-src="img/sub_header_short.jpg" data-natural-width="1400" data-natural-height="350">
     <div id="subheader">
@@ -138,12 +104,44 @@
 	<div class="row">
 		<div class="col-md-3">
 			<div id="filters_col">
-				<div class="collapse" id="collapseFilters">
-					<h4>My Food Delivered at</h4><br />
-                   	<input type="date" class="form-control" id="datePicker" name="datePicker" placeholder="Date"><br />
-                   	<input type="time" class="form-control" id="timePicker" name="timePicker" placeholder="Time"><br />
+				<h4>My Food Delivered at</h4>
+				<hr>
+				<div class="form-group">
+					<label>Delivery Day</label>
+					<select class="form-control" name="delivery_schedule_day" id="delivery_schedule_day">
+						<option value="" selected>Select day</option>
+						<option value="Today">Today</option>
+						<option value="Tomorrow">Tomorrow</option>
+						<option value="AfterTomorrow">After Tomorrow</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>Delivery time</label>
+					<select class="form-control" name="delivery_schedule_time" id="delivery_schedule_time">
+						<option value="" selected>Select time</option>
+						<option value="11.30am">11.30am</option>
+						<option value="11.45am">11.45am</option>
+						<option value="12.15am">12.15am</option>
+						<option value="12.30am">12.30am</option>
+						<option value="12.45am">12.45am</option>
+						<option value="01.00pm">01.00pm</option>
+						<option value="01.15pm">01.15pm</option>
+						<option value="01.30pm">01.30pm</option>
+						<option value="01.45pm">01.45pm</option>
+						<option value="02.00pm">02.00pm</option>
+						<option value="07.00pm">07.00pm</option>
+						<option value="07.15pm">07.15pm</option>
+						<option value="07.30pm">07.30pm</option>
+						<option value="07.45pm">07.45pm</option>
+						<option value="08.00pm">08.00pm</option>
+						<option value="08.15pm">08.15pm</option>
+						<option value="08.30pm">08.30pm</option>
+						<option value="08.45pm">08.45pm</option>
+					</select>
+					<hr>
 					<a href="list_page.html" class="btn_3">Search</a>
-				</div><!--End collapse -->
+				</div>
+					
 			</div><!--End filters col-->
 		</div><!--End col-md -->
 		
@@ -360,8 +358,6 @@
             <ul>
             	간단한 소개 및 주소 전화번호 팩스
             </ul>
-            
-            
         </div>
         <div class="col-md-3 col-sm-3">
             <h3>About</h3>
@@ -441,7 +437,6 @@
 	</div>
 </div><!-- End Register modal -->
    
-
 <!-- Terms and conditions modal -->   
 <div class="modal fade" id="tos" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
