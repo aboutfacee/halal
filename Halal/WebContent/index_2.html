@@ -22,9 +22,6 @@
 
     <!-- BASE CSS -->
     <link href="css/base.css" rel="stylesheet">
-    
-    <!-- SPECIFIC CSS -->
-    <link href="layerslider/css/layerslider.css" rel="stylesheet">
 
     <!--[if lt IE 9]>
       <script src="js/html5shiv.min.js"></script>
@@ -35,11 +32,11 @@
 
 <body>
 
-    <!--[if lte IE 8]>
-        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>.</p>
-    <![endif]-->
-    
-    <div id="preloader">
+<!--[if lte IE 8]>
+    <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>.</p>
+<![endif]-->
+
+	<div id="preloader">
         <div class="sk-spinner sk-spinner-wave" id="status">
             <div class="sk-rect1"></div>
             <div class="sk-rect2"></div>
@@ -48,7 +45,7 @@
             <div class="sk-rect5"></div>
         </div>
     </div><!-- End Preload -->
-    
+
     <!-- Header ================================================== -->
     <header>
     <div class="container-fluid">
@@ -77,44 +74,29 @@
     <!-- End Header =============================================== -->
     
     <!-- SubHeader =============================================== -->
-    <div id="full-slider-wrapper">
-    <div id="layerslider" style="width:100%;height:600px;">
-        <!-- first slide -->
-        <div class="ls-slide" data-ls="slidedelay: 5000; transition2d:5;">
-            <img src="img/slides/food-320863_1280.jpg" class="ls-bg" alt="Slide background">
-        	<h3 class="ls-l slide_typo" style="top: 44%; left: 50%;" data-ls="offsetxin:0;durationin:2000;delayin:1000;easingin:easeOutElastic;rotatexin:90;transformoriginin:50% bottom 0;offsetxout:0;rotatexout:90;transformoriginout:50% bottom 0;" ><strong>Enjoy</strong> a quick friends dinner</h3>
-            <p class="ls-l slide_typo_2" style="top:52%; left:50%;" data-ls="durationin:2000;delayin:1000;easingin:easeOutElastic;" >Order Quality Takeaway or Delivery Food online</p>
-            <p class="ls-l" style="top:64%; left:50%;" data-ls="durationin:2000;delayin:1300;easingin:easeOutElastic;" ><a data-toggle="modal" data-target="#notice" class="btn_2">Order Now</a>
-       </div>
-       
-        <!-- second slide -->
-    <div class="ls-slide" data-ls="slidedelay: 5000; transition2d:5;">
-            <img  src="img/slides/noodles-516635_1280.jpg" class="ls-bg" alt="Slide background">
-        	<h3 class="ls-l slide_typo" style="top: 44%; left: 50%;" data-ls="offsetxin:0;durationin:2000;delayin:1000;easingin:easeOutElastic;rotatexin:90;transformoriginin:50% bottom 0;offsetxout:0;rotatexout:90;transformoriginout:50% bottom 0;" >Quick &amp; <strong>affordable</strong> quick food</h3>
-            <p class="ls-l slide_typo_2" style="top:52%; left:50%;" data-ls="durationin:2000;delayin:1000;easingin:easeOutElastic;" >Order Quality Takeaway or Delivery Food online</p>
-            <p class="ls-l" style="top:64%; left:50%;" data-ls="durationin:2000;delayin:1300;easingin:easeOutElastic;" ><a data-toggle="modal" data-target="#notice" class="btn_2">Order Now</a>
-    </div>
-    
-     <!-- third slide -->
-     <div class="ls-slide" data-ls="slidedelay:5000; transition2d:5;" >
-             <img src="img/slides/salad-374173_1280.jpg" class="ls-bg" alt="Slide background">
-        	<h3 class="ls-l slide_typo" style="top: 44%; left: 50%;" data-ls="offsetxin:0;durationin:2000;delayin:1000;easingin:easeOutElastic;rotatexin:90;transformoriginin:50% bottom 0;offsetxout:0;rotatexout:90;transformoriginout:50% bottom 0;" ><strong>Great</strong> Food Quality &amp; Variety</h3>
-            <p class="ls-l slide_typo_2" style="top:52%; left:50%;" data-ls="durationin:2000;delayin:1000;easingin:easeOutElastic;" >Order Quality Takeaway or Delivery Food online</p>
-            <p class="ls-l" style="top:64%; left:50%;" data-ls="durationin:2000;delayin:1300;easingin:easeOutElastic;" ><a data-toggle="modal" data-target="#notice" class="btn_2">Order Now</a>
-    </div>
-      
-    <!-- fourth slide -->
-    <div class="ls-slide" data-ls="slidedelay: 5000; transition2d:5;">
-        <img src="img/slides/salmon-518032_1280.jpg" class="ls-bg" alt="Slide background">
-        	<h3 class="ls-l slide_typo" style="top: 44%; left: 50%;" data-ls="offsetxin:0;durationin:2000;delayin:1000;easingin:easeOutElastic;rotatexin:90;transformoriginin:50% bottom 0;offsetxout:0;rotatexout:90;transformoriginout:50% bottom 0;" >Stop your <strong>hunger</strong> quickly</h3>
-            <p class="ls-l slide_typo_2" style="top:52%; left:50%;" data-ls="durationin:2000;delayin:1000;easingin:easeOutElastic;" >Order Quality Takeaway or Delivery Food online</p>
-            <p class="ls-l" style="top:64%; left:50%;" data-ls="durationin:2000;delayin:1300;easingin:easeOutElastic;" ><a data-toggle="modal" data-target="#notice" class="btn_2">Order Now</a>
-    </div>
-    </div>
-    </div><!-- End layerslider -->
+    <section class="parallax-window" id="home" data-parallax="scroll" data-image-src="img/sub_header_home.jpg" data-natural-width="1400" data-natural-height="550">
+    <div id="subheader">
+        <div id="sub_content">
+            <h1>Halal Food is ...</h1>
+            <p>
+            	이슬람식 도축법인 다비하(Dhabihah) 식으로 도살한 짐승의 고기와 그 고기를 가지고 만든 음식 전반을 뜻한다.
+				할랄이라는 말은 아랍어로 '허용된 것'이라는 뜻이 있으며, 말 그대로 이슬람 율법에 허용된 것이다. 
+				반대말은 '허용되지 않은 것'이라는 뜻의 하람(Haram)이다. 이슬람에서 이것만은 먹으면 안 된다는 금지된 음식. 
+				굳이 할랄 방식으로 도살한 고기가 아니더라도 이슬람 율법에 하자가 없는 음식은 다 할랄 푸드로 부르기도 한다.
+				무슬림들에게 이슬람은 생활 전반에까지 영향을 끼치기 때문에 할랄 푸드를 먹어야 할 의무가 있다.
+            </p>
+            <br /><br /><br /><br /><br />
+			<div class="go_to">
+				<div>
+					<a data-toggle="modal" data-target="#notice" class="btn_2">Order Now</a>
+				<div>
+			</div>
+        </div><!-- End sub_content -->
+    </div><!-- End subheader -->
+    </section><!-- End section -->
     <!-- End SubHeader ============================================ -->
     
-    <!-- Content ================================================== -->
+     <!-- Content ================================================== -->
          <div class="container margin_60">
         
          <div class="main_title">
@@ -347,28 +329,6 @@
 <script src="js/common_scripts_min.js"></script>
 <script src="js/functions.js"></script>
 <script src="assets/validate.js"></script>
-
-<!-- SPECIFIC SCRIPTS -->
-<script src="layerslider/js/greensock.js"></script>
-<script src="layerslider/js/layerslider.transitions.js"></script>
-<script src="layerslider/js/layerslider.kreaturamedia.jquery.js"></script>
-<script type="text/javascript">
-    $(document).ready(function(){
-		'use strict';
-        $('#layerslider').layerSlider({
-            autoStart: true,
-			responsive: true,
-			responsiveUnder: 1280,
-			layersContainer: 1170,
-			navButtons:false,
-			showCircleTimer:false,
-			navStartStop:false,
-            skinsPath: 'layerslider/skins/'
-            // Please make sure that you didn't forget to add a comma to the line endings
-            // except the last line!
-        });
-    });
-</script>
 
 </body>
 </html>
