@@ -871,7 +871,7 @@ a.strip_list:hover h3{
 	font-style:italic;
 	color:#777;
 	margin-bottom:12px;
-	margin-top:5px;
+	margin-top:20px;
 }
 .desc .opening{
 	color:#C33;
@@ -1614,7 +1614,7 @@ select.form-control.form-white{
 }
 .modal-popup {
 	position: relative;
-	padding:1px 30px 10px 30px;
+	padding:20px 30px 20px 30px;
 	text-align: center;
 	background: #78cfcf;
 	border-radius: 0px;
@@ -1702,7 +1702,7 @@ s.checkbox-holder {
 }
 .btn.btn-submit {
 	width: 100%;
-	margin-top: 30px;
+	margin-top: 10px;
 	color: #85c99d;
 	padding:10px;
 	background: #fff;

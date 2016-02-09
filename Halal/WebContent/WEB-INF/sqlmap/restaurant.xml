@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="restaurant">
+	<!-- 식당 리스트 조회 -->
+	<select id="selRestaurant" parameterType="front.vo.RestaurantVO"
+		resultType="front.vo.RestaurantVO">
+		SELECT rest_no
+		     , rest_nm
+			 , rest_priority
+			 , rest_content
+			 , rest_img
+			 , deli_start_time
+			 , deli_end_time
+		  FROM TB_RESTAURANT
+		 WHERE del_yn = '0'
+	  ORDER BY rest_priority
+	</select>
+	
+	<!-- 메뉴 리스트 조회 -->
+	<select id="selMenu" parameterType="front.vo.RestaurantVO"
+		resultType="front.vo.RestaurantVO">
+		SELECT menu_no
+		     , menu_nm
+			 , menu_priority
+			 , menu_price
+			 , menu_summ
+			 , menu_content
+			 , menu_img
+		  FROM TB_MENU M, TB_RESTAURANT R
+		 WHERE M.del_yn = '0'
+		   AND R.rest_no = M.rest_no
+		   AND M.rest_no = #{rest_no}
+	  ORDER BY menu_priority
+	</select>
+</mapper>
