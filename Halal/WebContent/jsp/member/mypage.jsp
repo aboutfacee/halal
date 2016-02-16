@@ -160,7 +160,7 @@
 <!-- End Footer =============================================== -->
 
 <!-- SPECIFIC SCRIPTS -->
-<script src="/common/js/jquery.pin.min.js"></script>
+<script src="/common/assets/js/jquery.pin.min.js"></script>
 <script>$("#faq_box").pin({padding: {top: 80, bottom: 20},minWidth: 1000, containerSelector: "#container_pin"})</script>
 <script>
  $(function() {

@@ -20,22 +20,20 @@
 		INSERT INTO TB_MEMBER(
 			EMAIL
 		  , PWD
-		  , MEM_NM
-		  , COUNTRY_CD
-		  , MOBILE
-		  , SOCIAL_NM
+		  , MEM_NAME
+		  , COUNTRY_CODE
+		  , PHONE
+		  , SOCIAL_NAME
 		  , SOCIAL_ID
-		  , MEM_AUTH
 		  , DEL_YN
 		) VALUES (
 		   #{email}
 		 , #{pwd}
-		 , #{mem_nm}
-		 , #{country_cd}
-		 , #{mobile}
-		 , #{social_nm}
+		 , #{mem_name}
+		 , #{country_code}
+		 , #{phone}
+		 , #{social_name}
 		 , #{social_id}
-		 , '0'
 		 , '0'
 		);
 	</insert>
@@ -48,6 +46,7 @@
 		WHERE
 		EMAIL = #{email} AND PWD = #{pwd};
 	</select>
+	
 	<!-- 아이디 찾기 -->
 	<select id="searchId" parameterType="front.vo.MemberVO" resultType="front.vo.MemberVO">
 		SELECT
@@ -66,15 +65,6 @@
 		WHERE
 		EMAIL = #{email};
 	</select>
-	
-	<!-- 임시비밀번호 업데이트 -->
-	<update id="updPwd" parameterType="front.vo.MemberVO"> 
-		UPDATE TB_MEMBER 
-		SET PWD = #{pwd} , UPD_DT = NOW() , UPD_ID = #{userId} 
-		WHERE EMAIL = #{email} 
-		AND IFNULL(DEL_YN, 'N') = 'N' AND GRADE = #{grade} 
-	</update>
-	
 	
 	<!-- 관리자 회원 조회 -->
 	<select id="selMemManege" parameterType="front.vo.MemberVO"
@@ -304,5 +294,12 @@
 		) TB2,
 		(SELECT @RN2:=0) R
 	</select>
+	
+	<!-- 임시비밀번호 업데이트 -->
+	<update id="updPwd" parameterType="front.vo.MemberVO"> 
+		UPDATE TB_MEMBER 
+		SET PWD = #{pwd}
+		WHERE EMAIL = #{email} 
+	</update>
 	
 </mapper>

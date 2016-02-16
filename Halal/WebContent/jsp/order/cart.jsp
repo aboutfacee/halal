@@ -81,82 +81,82 @@
 					<h2 class="inner">Your order details</h2>
 					
 					<c:if test="${empty userInfo.email}">
-					
-					<div class="row">
-						<div class="col-md-6 col-sm-6">
-							<div class="form-group">
-								<label>Email</label>
-								<input type="text" class="form-control" id="email" name="email" placeholder="Your Email">
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-6 col-sm-6">
-							<div class="form-group">
-								<label>Name</label>
-								<input type="text" class="form-control" id="name" name="name" placeholder="Your Name">
-							</div>
-						</div>
-					</div>
-					
-					<div class="row">
-						<div class="col-md-6 col-sm-6">
-							<div class="form-group">
-								<label>Password</label>
-								<input type="password" class="form-control" id="pwd" name="pwd" placeholder="Password">
-							</div>
-						</div>
-					</div>
-					
-					<div class="row">
-						<div class="col-md-2 col-sm-2">
-							<div class="form-group">
-								<label>Country Code</label>
-								<select class="form-control" name="contryCode" id="contryCode">
-									<option value="" selected>Code</option>
-									<option value="Korea">+082</option>
-									<option value="Korea">+082</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-md-4 col-sm-4">
-							<div class="form-group">
-								<label>Your Telephone</label>
-								<input type="text" class="form-control" id="telephone" name="telephone" placeholder="Your Telephone">
-							</div>
-						</div>
-					</div>
-					
-					<div class="row">
-						<div class="col-md-2 col-sm-2">
-							<div class="form-group">
-								<label>SNS Name</label>
-								<select class="form-control" name="snsName" id="snsName">
-									<option value="" selected>SNS</option>
-									<option value="Line">Line</option>
-									<option value="Facebook">Facebook</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-md-4 col-sm-4">
-							<div class="form-group">
-								<label>Your ID</label>
-								<input type="text" class="form-control" id="snsID" name="snsID" placeholder="Your ID">
-							
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6 col-sm-6">
-							<div class="form-group">
-								<div>
-									<a href="detail_page.html" class="btn_3">Sign in</a>
+						<form action="/halal/MemberJoin" id="myRegister" method="post">
+							<div class="row">
+								<div class="col-md-6 col-sm-6">
+									<div class="form-group">
+										<label>Email</label>
+										<input type="text" class="form-control" id="email" name="email" placeholder="Your Email">
+									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-					
+		
+							<div class="row">
+								<div class="col-md-6 col-sm-6">
+									<div class="form-group">
+										<label>Name</label>
+										<input type="text" class="form-control" id="name" name="name" placeholder="Your Name">
+									</div>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-md-6 col-sm-6">
+									<div class="form-group">
+										<label>Password</label>
+										<input type="password" class="form-control" id="pwd" name="pwd" placeholder="Password">
+									</div>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-md-2 col-sm-2">
+									<div class="form-group">
+										<label>Country Code</label>
+										<select class="form-control" name="contryCode" id="contryCode">
+											<option value="" selected>Code</option>
+											<option value="Korea">+082</option>
+											<option value="Korea">+082</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-4">
+									<div class="form-group">
+										<label>Your Telephone</label>
+										<input type="text" class="form-control" id="telephone" name="telephone" placeholder="Your Telephone">
+									</div>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-md-2 col-sm-2">
+									<div class="form-group">
+										<label>SNS Name</label>
+										<select class="form-control" name="snsName" id="snsName">
+											<option value="" selected>SNS</option>
+											<option value="Line">Line</option>
+											<option value="Facebook">Facebook</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-4">
+									<div class="form-group">
+										<label>Your ID</label>
+										<input type="text" class="form-control" id="snsID" name="snsID" placeholder="Your ID">
+									
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6 col-sm-6">
+									<div class="form-group">
+										<div>
+											<a href="detail_page.html" class="btn_3">Sign in</a>
+										</div>
+									</div>
+								</div>
+							</div>
+					</form>
 					</c:if>
 	                
 					<div class="row">
@@ -301,7 +301,7 @@
 <!-- End Footer =============================================== -->
 
 <!-- SPECIFIC SCRIPTS -->
-<script src="/common/js/jquery.pin.min.js"></script><script>$("#cart_box").pin({padding: {top: 80, bottom: 25},minWidth: 1100, containerSelector: "#container_pin"})</script>
+<script src="/common/assets/js/jquery.pin.min.js"></script><script>$("#cart_box").pin({padding: {top: 80, bottom: 25},minWidth: 1100, containerSelector: "#container_pin"})</script>
 
 </body>
 </html>

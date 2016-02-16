@@ -17,13 +17,11 @@ public class AdminLoginProc {
 //	@Autowired
 //	private SqlSession sqlSession;
 
-	public	boolean setSession	(HttpServletRequest	req, String	inId, String inPwd, String inMem_auth, SqlSession sqlSession) throws IOException {
+	public	boolean setSession	(HttpServletRequest	req, String	inId, String inPwd, SqlSession sqlSession) throws IOException {
 		boolean flag  = false;
 		MemberVO paramVo = new MemberVO();
 		paramVo.setEmail(inId);
 		paramVo.setPwd(inPwd);
-		paramVo.setMem_auth(inMem_auth);
-		
 		MemberVO memberVO = sqlSession.selectOne("member.memberLogin", paramVo);
 		
 		if (memberVO != null){
@@ -35,7 +33,6 @@ public class AdminLoginProc {
 			System.out.println("memberVO======="+memberVO);
 			System.out.println("getLogin_id()======="+memberVO.getEmail());
 			System.out.println("getLogin_pwd()======="+memberVO.getPwd());
-			System.out.println("getLogin_grade()======="+memberVO.getMem_auth());
 			System.out.println("userinfo======="+session.getAttribute("USERINFO"));
 			
 			

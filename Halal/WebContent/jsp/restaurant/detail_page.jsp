@@ -8,6 +8,12 @@
     <meta charset="utf-8">
     <title>Halal Oppa</title>
 	<jsp:include page="/jsp/com/topDeclare.jsp" />
+	<script src="/common/assets/js/jquery-ajaxHelper.js"></script> <!-- ajax 선언 -->
+	<script type="text/javascript" charset="utf-8" src="/common/assets/js/modernizr.js"></script>
+	<script src="/common/assets/plugins/codrops-dialogFx/dialogFx.js" type="text/javascript"></script>
+	
+	
+	<c:set var="cart" value="${resultMap.cartVO}" />
 </head>
 
 <body>
@@ -57,7 +63,6 @@
 <div class="container margin_60_35">
 	<div id="container_pin">
 		<div class="row">
-        
 			<div class="col-md-8">
 				<div class="box_style_2" id="main_menu">
 					<h2 class="inner">Menu</h2>
@@ -76,11 +81,14 @@
 					</tr>
 					</thead>
 					<tbody>
+					
+					
+						<c:set var="menuList" value="${resultMap.menuList}" />
 						<c:forEach var="menuList" items="${resultMap.menuList}" varStatus="status">
 						<tr>
-							<td data-toggle="modal" data-target="#menuDetail">
-								<div id="menuThumb">
-									<h4>${menuList.menu_nm }</h4>
+							<td onclick="goMenuDetail(${menuList.menu_no })">
+								<div id="menuThumb" data-toggle="modal" >
+									<h4>${menuList.menu_name }</h4>
 									<img src="/common/img/thumb_restaurant.jpg" alt="">
 									${menuList.menu_summ }
 								</div>
@@ -89,7 +97,7 @@
 								<strong>${menuList.menu_price } won</strong>
 							</td>
 							<td class="options">
-								<a href="#0"><i class="icon_plus_alt2"></i></a>
+								<i class="icon_plus_alt2" onclick="addCart(${menuList.menu_no }, getCookie('cart'))"></i></a>
 							</td>
 						</tr>
 						</c:forEach>
@@ -103,44 +111,8 @@
 					<h3>Your order <i class="icon_cart_alt pull-right"></i></h3>
 					<table class="table table_summary">
 					<tbody>
-					<tr>
-						<td>
-							<a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>1x</strong> Enchiladas
-						</td>
-						<td>
-							<strong class="pull-right">$11</strong>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>2x</strong> Burrito
-						</td>
-						<td>
-							<strong class="pull-right">$14</strong>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>1x</strong> Chicken
-						</td>
-						<td>
-							<strong class="pull-right">$20</strong>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>2x</strong> Corona Beer
-						</td>
-						<td>
-							<strong class="pull-right">$9</strong>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>2x</strong> Cheese Cake
-						</td>
-						<td>
-							<strong class="pull-right">$12</strong>
+					<tr>	
+						<td id="addCart">
 						</td>
 					</tr>
 					</tbody>
@@ -155,7 +127,7 @@
 					</tr>
 					<tr>
 						<td>
-							 Delivery fee <span class="pull-right">$10</span>
+							 Delivery fee <span class="pull-right">20000 KRW</span>
 						</td>
 					</tr>
 					<tr>
@@ -181,12 +153,12 @@
 
    
 <!-- Menu Detail modal -->   
-<div class="modal fade" id="menuDetail" role="dialog" aria-hidden="true">
+<div class="modal fade" id="menuDetail" role="dialog" aria-hidden="true" style="display:none;">
 	<div class="modal-dialog">
 		<div class="modal-content modal-popup">
 		<h2>Menu Detail</h2>
 			<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
-			${menuList.menu_content}
+			<div id="menuContent"></div>
 		</div>
 	</div>
 </div><!-- End Privacy Policy modal -->
@@ -194,26 +166,194 @@
   
 
 <!-- SPECIFIC SCRIPTS -->
-<script  src="/common/js/cat_nav_mobile.js"></script>
+<script  src="/common/assets/js/cat_nav_mobile.js"></script>
 <script>$('#cat_nav').mobileMenu();</script>
-<script src="/common/js/jquery.pin.min.js"></script>
+<script src="/common/assets/js/jquery.pin.min.js"></script>
 <script>$("#cart_box").pin({padding: {top: 80, bottom: 25},minWidth: 1100, containerSelector: "#container_pin"})</script>
 <script>
- $(function() {
-	 'use strict';
-	  $('a[href*=#]:not([href=#])').click(function() {
-	    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-	      var target = $(this.hash);
-	      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-	      if (target.length) {
-	        $('html,body').animate({
-	          scrollTop: target.offset().top - 70
-	        }, 1000);
-	        return false;
-	      }
-	    }
-	  });
+$(function() {
+ 'use strict';
+  $('a[href*=#]:not([href=#])').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html,body').animate({
+          scrollTop: target.offset().top - 70
+        }, 1000);
+        return false;
+      }
+    }
+  });
+});
+
+function addCart(menu_no, cart_no)
+{
+
+	var dataPack = new Object();
+	dataPack.menu_no = menu_no;
+	dataPack.cart_no = cart_no;
+	var ajaxResult = ajaxHelper("/halal/AddCart", {"paramPack" : JSON.stringify(dataPack)});
+	
+	ajaxResult.success(function(data){
+		var resultVO = data.resultVO;
+		
+		$("#addCart").empty();
+	
+		var html = "";
+		
+			alert("11111");
+		for (var i in resultVO){
+		html += "<a href='#0' class='remove_item pull-left' onclick='deleteMenu(" + resultVO[i].menu_no + ")'><i class='icon_minus_alt pull-left'></i></a><strong>"+ resultVO[i].count+"x &nbsp</strong>";
+		html += "<span>" + resultVO[i].menu_name + "</span>"
+		html += "<strong class='pull-right'>" + resultVO[i].menu_price + " KRW</strong><br>";
+		}
+		$("#addCart").append(html);
+		
+	})
+}
+
+function deleteMenu(menu_no)
+{
+	alert("Asdfasdf");
+}
+
+
+function goMenuDetail(menu_no){
+	
+    $("body").css({ "overflow": "auto" });
+    
+    var dataPack = new Object();
+	dataPack.menu_no = menu_no;
+	var ajaxResult = ajaxHelper("/halal/MenuDetail", {"paramPack" : JSON.stringify(dataPack)});
+
+	ajaxResult.success(function(data){
+		var restaurantVo = data.restaurantVo;
+		if(!restaurantVo == null || !restaurantVo == ""){
+			
+			$("#menuContent").empty();
+			$("#menuContent").append(restaurantVo.menu_img);
+			$("#menuContent").append(restaurantVo.menu_content);
+			$("#menuDetail").modal('toggle');
+
+		} else{
+			alert("못가져옴");
+		}
 	});
+
+	alert(getCookie());
+}
+
+/* 
+function addCart(menu_no)
+{
+	var dataPack = new Object();
+	dataPack.menu_no = menu_no;
+	var ajaxResult = ajaxHelper("/halal/AddCart", {"paramPack" : JSON.stringify(dataPack)});
+
+	ajaxResult.success(function(data){
+		var restaurantVo = data.restaurantVo;
+		if(!getCookie(restaurantVo.menu_name) == null || getCookie(restaurantVo.menu_name) == "" )
+		{
+			alert("1111");
+			var deleteMenu=$("<a href='#0' class='remove_item pull-left' onclick='deleteMenu(" + restaurantVo.menu_no + ")'><i class='icon_minus_alt pull-left'></i></a><br>");
+			var addMenuCount=$("<strong>1x</strong><br>");
+			var addMenuName=$("<span>" + restaurantVo.menu_name + "</span><br>");
+			var addMenuPrice=$("<strong class='pull-right'>" + restaurantVo.menu_price + " KRW</strong><br>");
+			
+			$("#deleteMenu").append(deleteMenu)
+			$("#addMenuCount").append(addMenuCount)
+			$("#addMenuName").append(addMenuName)
+			$("#addMenuPrice").append(addMenuPrice)
+			setCookie(restaurantVo.menu_name, restaurantVo.menu_no, 1);
+
+			alert(getCookie(restaurantVo.menu_name));
+
+		} else {
+			alert("2222");
+			
+			alert(getCookie(restaurantVo.menu_name));
+
+		setCookie(restaurantVo.menu_name, restaurantVo.menu_no, 1);
+       	$("#addMenu").append(restaurantVo.menu_name);
+		
+		}
+
+	})
+}
+
+function deleteMenu(menu_no)
+{
+	alert("Asdfasdf");
+
+	var dataPack = new Object();
+	dataPack.menu_no = menu_no;
+	var ajaxResult = ajaxHelper("/halal/AddCart", {"paramPack" : JSON.stringify(dataPack)});
+
+	ajaxResult.success(function(data){
+		var restaurantVo = data.restaurantVo;
+		
+		setCookie(restaurantVo.menu_name, '', -1);
+
+
+	})
+}
+
+
+function goMenuDetail(menu_no){
+	
+    $("body").css({ "overflow": "auto" });
+    
+    var dataPack = new Object();
+	dataPack.menu_no = menu_no;
+	var ajaxResult = ajaxHelper("/halal/MenuDetail", {"paramPack" : JSON.stringify(dataPack)});
+
+	ajaxResult.success(function(data){
+		var restaurantVo = data.restaurantVo;
+		if(!restaurantVo == null || !restaurantVo == ""){
+			
+			$("#menuContent").empty();
+			$("#menuContent").append(restaurantVo.menu_img);
+			$("#menuContent").append(restaurantVo.menu_content);
+			$("#menuDetail").modal('toggle');
+
+		} else{
+			alert("못가져옴");
+		}
+	});
+
+	alert(getCookie());
+}
+*/
+
+//쿠키 생성
+function setCookie(cName, cValue, cDay){
+    var expire = new Date();
+    expire.setDate(expire.getDate() + cDay);
+    cookies = cName + '=' + escape(cValue) + '; path=/ '; // 한글 깨짐을 막기위해 escape(cValue)를 합니다.
+    if(typeof cDay != 'undefined') cookies += ';expires=' + expire.toGMTString() + ';';
+    document.cookie = cookies;
+}
+
+// 쿠키 가져오기
+function getCookie(cName) {
+    cName = cName + '=';
+    var cookieData = document.cookie;
+    var start = cookieData.indexOf(cName);
+    var cValue = '';
+    if(start != -1){
+        start += cName.length;
+        var end = cookieData.indexOf(';', start);
+        if(end == -1)end = cookieData.length;
+        cValue = cookieData.substring(start, end);
+    }
+    return unescape(cValue);
+} 
+ 	
+(function(){
+ 	var cart = ${cart.cart_no};
+	setCookie('cart', cart, 1);
+})();
 </script>
 
 </body>

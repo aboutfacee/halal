@@ -54,10 +54,39 @@
 				<input type="text" class="form-control form-white" name="email" placeholder="Email" value="">
 				<input type="password" class="form-control form-white" name="pwd" placeholder="Password" value="">
 				<div class="text-left">
-					<a href="#">Forgot Password?</a>
+					<a href='javascript:void(0);' onclick="sendMail()">Forgot Password?</a>
 				</div>
 				<button type="submit" class="btn btn-submit">Submit</button>
+				<%
+					String returnUrl = (String)request.getRequestURL().toString();	
+				%>
+				<input type="hidden" name="returnUrl" value="<%=returnUrl %>" >
 			</form>
 		</div>
 	</div>
 </div><!-- End modal -->
+
+<!-- Forgot Password modal -->   
+<div class="modal fade" id="forgotPassword" tabindex="-1" role="dialog" aria-labelledby="myLogin" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content modal-popup">
+			<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
+			<form action="/halal/SendPassword" class="popup-form" id="sendPassword" method="post">
+               	<div class="login_icon"><i class="icon_lock_alt"></i></div>
+				<input type="text" class="form-control form-white" name="email" placeholder="Email" value="">
+				<button type="submit" class="btn btn-submit">Submit</button>
+				<%
+					returnUrl = (String)request.getRequestURL().toString();	
+				%>
+				<input type="hidden" name="returnUrl" value="<%=returnUrl %>" >
+			</form>
+		</div>
+	</div>
+</div><!-- End modal -->
+<script>
+function sendMail()
+{
+	$("#login_2").modal('hide');
+	$("#forgotPassword").modal('show');
+}
+</script>

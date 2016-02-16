@@ -53,7 +53,7 @@
 <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myRegister" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content modal-popup">
-			<a href="/halal/MemberJoin" class="close-link"><i class="icon_close_alt2"></i></a>
+			<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
 			<form action="/halal/MemberJoin" class="popup-form" id="myRegister" method="post">
                	<div class="login_icon"><i class="icon_lock_alt"></i></div>
                 <div class="col-md-12 col-sm-12">
@@ -92,6 +92,12 @@
 					</div>
 				</div>
 				<button type="submit" class="btn btn-submit">Register</button>
+				
+				<%
+					String returnUrl = (String)request.getRequestURL().toString();	
+				%>
+				<input type="hidden" name="returnUrl" value="<%=returnUrl %>" >
+					
 			</form>
 		</div>
 	</div>
@@ -125,7 +131,7 @@
 <div class="layer"></div><!-- Mobile menu overlay mask -->
     
 <!-- COMMON SCRIPTS -->
-<script src="/common/js/jquery-1.11.2.min.js"></script>
-<script src="/common/js/common_scripts_min.js"></script>
-<script src="/common/js/functions.js"></script>
+<script src="/common/assets/js/jquery-1.11.2.min.js"></script>
+<script src="/common/assets/js/common_scripts_min.js"></script>
+<script src="/common/assets/js/functions.js"></script>
 <script src="/common/assets/validate.js"></script>

@@ -7,12 +7,13 @@
 	<select id="selRestaurant" parameterType="front.vo.RestaurantVO"
 		resultType="front.vo.RestaurantVO">
 		SELECT rest_no
-		     , rest_nm
+		     , rest_name
 			 , rest_priority
 			 , rest_content
 			 , rest_img
 			 , deli_start_time
 			 , deli_end_time
+			 , rest_address
 		  FROM TB_RESTAURANT
 		 WHERE del_yn = '0'
 	  ORDER BY rest_priority
@@ -22,7 +23,7 @@
 	<select id="selMenu" parameterType="front.vo.RestaurantVO"
 		resultType="front.vo.RestaurantVO">
 		SELECT menu_no
-		     , menu_nm
+		     , menu_name
 			 , menu_priority
 			 , menu_price
 			 , menu_summ
@@ -33,5 +34,20 @@
 		   AND R.rest_no = M.rest_no
 		   AND M.rest_no = #{rest_no}
 	  ORDER BY menu_priority
+	</select>
+	
+	<!-- 메뉴 조회 -->
+	<select id="selMenuOne" parameterType="front.vo.RestaurantVO"
+		resultType="front.vo.RestaurantVO">
+		SELECT menu_no
+		     , menu_name
+			 , menu_priority
+			 , menu_price
+			 , menu_summ
+			 , menu_content
+			 , menu_img
+		  FROM TB_MENU
+		 WHERE del_yn = '0'
+		   AND menu_no = #{menu_no}
 	</select>
 </mapper>

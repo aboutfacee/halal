@@ -15,6 +15,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,6 +25,7 @@ import com.util.PageNavigation;
 import com.util.StringUtil;
 
 import front.vo.RestaurantVO;
+import net.sf.json.JSONObject;
 
 
 @Controller
@@ -55,7 +57,29 @@ public class RestaurantController {
 		resultMap.put("menuList", menuVo);
 		resultMap.put("paramVO", paramVO);
 		
+		sqlSession.insert("order.addCart", paramVO);
+		RestaurantVO cartVo = sqlSession.selectOne("order.selCart_no");
+		resultMap.put("cartVO", cartVo);
 		ModelAndView mav = new ModelAndView("/restaurant/detail_page", "resultMap", resultMap);
+		return mav;
+	}
+	
+	
+	// 식당 상세
+	@RequestMapping("/MenuDetail")
+	public ModelAndView MenuDetail(HttpServletRequest request, HttpServletResponse response, RestaurantVO paramVO) {
+		
+		String dataPack = request.getParameter("paramPack");
+		JSONObject dataObj = JSONObject.fromObject(dataPack);
+		HashMap jasonMap = (HashMap)JSONObject.toBean(dataObj, HashMap.class);
+		
+		paramVO.setMenu_no(jasonMap.get("menu_no").toString());
+
+		RestaurantVO restaurantVo = sqlSession.selectOne("restaurant.selMenuOne", paramVO);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("restaurantVo", restaurantVo);
+		
+		ModelAndView mav = new ModelAndView("jsonView", resultMap);
 		return mav;
 	}
 }

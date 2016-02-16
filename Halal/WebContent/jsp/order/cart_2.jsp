@@ -179,7 +179,7 @@
 <!-- End Footer =============================================== -->
 
 <!-- SPECIFIC SCRIPTS -->
-<script src="/common/js/jquery.pin.min.js"></script>
+<script src="/common/assets/js/jquery.pin.min.js"></script>
 <script>$("#cart_box").pin({padding: {top: 80, bottom: 25},minWidth: 1100, containerSelector: "#container_pin"})</script>
 
 </body>

@@ -97,7 +97,7 @@
 							<div class="thumb_strip">
 								<a href="/jsp/restaurant/detail_page.jsp"><img src="/common/img/${restaurantList.rest_img}" alt=""></a>
 							</div>
-							<h3>${restaurantList.rest_nm}</h3>
+							<h3>${restaurantList.rest_name}</h3>
 							<div class="type">
 								${restaurantList.rest_content} <span class="opening">Opens at ${restaurantList.deli_start_time }.</span> <span class="opening">Closes at ${restaurantList.deli_end_time }.</span>
 							</div>
@@ -130,12 +130,12 @@
 
 
 <!-- SPECIFIC SCRIPTS -->
-<script  src="js/cat_nav_mobile.js"></script>
+<script src="/common/assets/js/cat_nav_mobile.js"></script>
 <script>$('#cat_nav').mobileMenu();</script>
 <script src="http://maps.googleapis.com/maps/api/js"></script>
-<script src="/common/js/map.js"></script>
-<script src="/common/js/infobox.js"></script>
-<script src="/common/js/ion.rangeSlider.js"></script>
+<script src="/common/assets/js/map.js"></script>
+<script src="/common/assets/js/infobox.js"></script>
+<script src="/common/assets/js/ion.rangeSlider.js"></script>
 <script>
     $(function () {
 		 'use strict';
@@ -152,6 +152,30 @@
             grid: true
         });
     });
+    
+//쿠키 생성
+function setCookie(cName, cValue, cDay){
+    var expire = new Date();
+    expire.setDate(expire.getDate() + cDay);
+    cookies = cName + '=' + escape(cValue) + '; path=/ '; // 한글 깨짐을 막기위해 escape(cValue)를 합니다.
+    if(typeof cDay != 'undefined') cookies += ';expires=' + expire.toGMTString() + ';';
+    document.cookie = cookies;
+}
+
+// 쿠키 가져오기
+function getCookie(cName) {
+    cName = cName + '=';
+    var cookieData = document.cookie;
+    var start = cookieData.indexOf(cName);
+    var cValue = '';
+    if(start != -1){
+        start += cName.length;
+        var end = cookieData.indexOf(';', start);
+        if(end == -1)end = cookieData.length;
+        cValue = cookieData.substring(start, end);
+    }
+    return unescape(cValue);
+} 
 </script>
 </body>
 </html>

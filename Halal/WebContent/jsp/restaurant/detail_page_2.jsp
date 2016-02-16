@@ -650,16 +650,16 @@
 	</div><!-- End Register modal -->   
         
 <!-- COMMON SCRIPTS -->
-<script src="js/jquery-1.11.2.min.js"></script>
-<script src="js/common_scripts_min.js"></script>
-<script src="js/functions.js"></script>
+<script src="assets/js/jquery-1.11.2.min.js"></script>
+<script src="assets/js/common_scripts_min.js"></script>
+<script src="assets/js/functions.js"></script>
 <script src="assets/validate.js"></script>
 
 <!-- SPECIFIC SCRIPTS -->
 <script src="http://maps.googleapis.com/maps/api/js"></script>
-<script src="js/map_single.js"></script>
-<script src="js/infobox.js"></script>
-<script src="js/jquery.sliderPro.min.js"></script>
+<script src="assets/js/map_single.js"></script>
+<script src="assets/js/infobox.js"></script>
+<script src="assets/js/jquery.sliderPro.min.js"></script>
 <script type="text/javascript">
 	$( document ).ready(function( $ ) {
 		$( '#Img_carousel' ).sliderPro({
