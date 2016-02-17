@@ -121,8 +121,7 @@
 					<table class="table table_summary">
 					<tbody>
 					<tr>
-						<td>
-							 Subtotal <span class="pull-right">$56</span>
+						<td id="subTotal">
 						</td>
 					</tr>
 					<tr>
@@ -132,7 +131,7 @@
 					</tr>
 					<tr>
 						<td class="total">
-							 TOTAL <span class="pull-right">$66</span>
+							 TOTAL <span class="pull-right" id="total">20000 KRW</span>
 						</td>
 					</tr>
 					</tbody>
@@ -200,22 +199,65 @@ function addCart(menu_no, cart_no)
 		
 		$("#addCart").empty();
 	
-		var html = "";
-		
-			alert("11111");
+		var cart = "";
+		var sum = 0;
+
 		for (var i in resultVO){
-		html += "<a href='#0' class='remove_item pull-left' onclick='deleteMenu(" + resultVO[i].menu_no + ")'><i class='icon_minus_alt pull-left'></i></a><strong>"+ resultVO[i].count+"x &nbsp</strong>";
-		html += "<span>" + resultVO[i].menu_name + "</span>"
-		html += "<strong class='pull-right'>" + resultVO[i].menu_price + " KRW</strong><br>";
+			if(resultVO[i].count == 0) 
+				continue;
+		cart += "<a href='#0' class='remove_item pull-left' onclick='deleteMenu(" + resultVO[i].menu_no + ", " + cart_no + ")'><i class='icon_minus_alt pull-left'></i></a>&nbsp<strong>"+ resultVO[i].count+"x &nbsp</strong>";
+		
+		cart += "<span>" + resultVO[i].menu_name + "</span>"
+		cart += "<strong class='pull-right'>" + resultVO[i].count*resultVO[i].menu_price + " KRW</strong><br>";
+		sum += resultVO[i].count*resultVO[i].menu_price;
 		}
-		$("#addCart").append(html);
+		$("#addCart").append(cart);
+		
+		$("#subTotal").empty();
+		var subTotal = "";
+		subTotal += "Subtotal <span class='pull-right'>" + sum + " KRW</span>"
+		$("#subTotal").append(subTotal);
+		
+		$("#total").empty();
+		$("#total").append(sum + 20000 + " KRW");
 		
 	})
 }
 
-function deleteMenu(menu_no)
+function deleteMenu(menu_no, cart_no)
 {
-	alert("Asdfasdf");
+	var dataPack = new Object();
+	dataPack.menu_no = menu_no;
+	dataPack.cart_no = cart_no;
+	var ajaxResult = ajaxHelper("/halal/DeleteCart", {"paramPack" : JSON.stringify(dataPack)});
+	
+	ajaxResult.success(function(data){
+		var resultVO = data.resultVO;
+		
+		$("#addCart").empty();
+	
+		var cart = "";
+		var sum = 0;
+
+		for (var i in resultVO){
+			if(resultVO[i].count == 0) 
+				continue;
+			cart += "<a href='#0' class='remove_item pull-left' onclick='deleteMenu(" + resultVO[i].menu_no + ", " + cart_no + ")'><i class='icon_minus_alt pull-left'></i></a>&nbsp<strong>"+ resultVO[i].count+"x &nbsp</strong>";
+			cart += "<span>" + resultVO[i].menu_name + "</span>"
+			cart += "<strong class='pull-right'>" + resultVO[i].count*resultVO[i].menu_price + " KRW</strong><br>";
+			sum += resultVO[i].count*resultVO[i].menu_price;
+		}
+		$("#addCart").append(cart);
+		
+		$("#subTotal").empty();
+		var subTotal = "";
+		subTotal += "Subtotal <span class='pull-right'>" + sum + " KRW</span>"
+		$("#subTotal").append(subTotal);
+		
+		$("#total").empty();
+		$("#total").append(sum + 20000 + " KRW");
+		
+	})
 }
 
 
