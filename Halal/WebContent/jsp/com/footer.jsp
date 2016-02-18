@@ -58,22 +58,22 @@
                	<div class="login_icon"><i class="icon_lock_alt"></i></div>
                 <div class="col-md-12 col-sm-12">
 				<input type="email" class="form-control form-white" id="email" name="email" placeholder="Email" value="">
-				<input type="text" class="form-control form-white" id="mem_nm" name="mem_nm" placeholder="Name" value="">
+				<input type="text" class="form-control form-white" id="mem_name" name="mem_name" placeholder="Name" value="">
 				<input type="password" class="form-control form-white" id="pwd" name="pwd" placeholder="Password" value="">
 				</div>
 				<div class="col-md-4 col-sm-4">
-						<select class="form-control form-white" name="country_cd" id="country_cd">
+						<select class="form-control form-white" name="country_code" id="country_code">
 							<option value="" selected>Country</option>
 							<option value="Korea">+082</option>
 							<option value="Korea">+082</option>
 						</select>
 				</div>
 				<div class="col-md-8 col-sm-8">
-					<input type="text" class="form-control form-white" id="mobile" name="mobile" placeholder="Telephone" value="">
+					<input type="text" class="form-control form-white" id="phone" name="phone" placeholder="Telephone" value="">
 				</div>
 			
 				<div class="col-md-4 col-sm-4">
-					<select class="form-control form-white" name="social_nm" id="social_nm">
+					<select class="form-control form-white" name="social_name" id="social_name">
 						<option value="" selected>SNS</option>
 						<option value="Line">Line</option>
 						<option value="Facebook">Facebook</option>

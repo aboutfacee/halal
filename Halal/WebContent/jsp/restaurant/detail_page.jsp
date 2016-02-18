@@ -137,7 +137,12 @@
 					</tbody>
 					</table>
 					<hr>
-					<a class="btn_full" href="/jsp/order/cart.jsp">Order now</a>
+					
+					<form id="checkOut" name="checkOut" method="post" action="/halal/CheckOut">
+						<input type="hidden" name="cart_no" value="${cart.cart_no}" />
+						<button type="submit" class="btn_full">Order now</button>
+					</form>
+					
 				</div><!-- End cart_box -->
 			</div><!-- End col-md-4 -->
             
@@ -165,7 +170,7 @@
   
 
 <!-- SPECIFIC SCRIPTS -->
-<script  src="/common/assets/js/cat_nav_mobile.js"></script>
+<script src="/common/assets/js/cat_nav_mobile.js"></script>
 <script>$('#cat_nav').mobileMenu();</script>
 <script src="/common/assets/js/jquery.pin.min.js"></script>
 <script>$("#cart_box").pin({padding: {top: 80, bottom: 25},minWidth: 1100, containerSelector: "#container_pin"})</script>
@@ -206,7 +211,6 @@ function addCart(menu_no, cart_no)
 			if(resultVO[i].count == 0) 
 				continue;
 		cart += "<a href='#0' class='remove_item pull-left' onclick='deleteMenu(" + resultVO[i].menu_no + ", " + cart_no + ")'><i class='icon_minus_alt pull-left'></i></a>&nbsp<strong>"+ resultVO[i].count+"x &nbsp</strong>";
-		
 		cart += "<span>" + resultVO[i].menu_name + "</span>"
 		cart += "<strong class='pull-right'>" + resultVO[i].count*resultVO[i].menu_price + " KRW</strong><br>";
 		sum += resultVO[i].count*resultVO[i].menu_price;
@@ -282,91 +286,7 @@ function goMenuDetail(menu_no){
 			alert("못가져옴");
 		}
 	});
-
-	alert(getCookie());
 }
-
-/* 
-function addCart(menu_no)
-{
-	var dataPack = new Object();
-	dataPack.menu_no = menu_no;
-	var ajaxResult = ajaxHelper("/halal/AddCart", {"paramPack" : JSON.stringify(dataPack)});
-
-	ajaxResult.success(function(data){
-		var restaurantVo = data.restaurantVo;
-		if(!getCookie(restaurantVo.menu_name) == null || getCookie(restaurantVo.menu_name) == "" )
-		{
-			alert("1111");
-			var deleteMenu=$("<a href='#0' class='remove_item pull-left' onclick='deleteMenu(" + restaurantVo.menu_no + ")'><i class='icon_minus_alt pull-left'></i></a><br>");
-			var addMenuCount=$("<strong>1x</strong><br>");
-			var addMenuName=$("<span>" + restaurantVo.menu_name + "</span><br>");
-			var addMenuPrice=$("<strong class='pull-right'>" + restaurantVo.menu_price + " KRW</strong><br>");
-			
-			$("#deleteMenu").append(deleteMenu)
-			$("#addMenuCount").append(addMenuCount)
-			$("#addMenuName").append(addMenuName)
-			$("#addMenuPrice").append(addMenuPrice)
-			setCookie(restaurantVo.menu_name, restaurantVo.menu_no, 1);
-
-			alert(getCookie(restaurantVo.menu_name));
-
-		} else {
-			alert("2222");
-			
-			alert(getCookie(restaurantVo.menu_name));
-
-		setCookie(restaurantVo.menu_name, restaurantVo.menu_no, 1);
-       	$("#addMenu").append(restaurantVo.menu_name);
-		
-		}
-
-	})
-}
-
-function deleteMenu(menu_no)
-{
-	alert("Asdfasdf");
-
-	var dataPack = new Object();
-	dataPack.menu_no = menu_no;
-	var ajaxResult = ajaxHelper("/halal/AddCart", {"paramPack" : JSON.stringify(dataPack)});
-
-	ajaxResult.success(function(data){
-		var restaurantVo = data.restaurantVo;
-		
-		setCookie(restaurantVo.menu_name, '', -1);
-
-
-	})
-}
-
-
-function goMenuDetail(menu_no){
-	
-    $("body").css({ "overflow": "auto" });
-    
-    var dataPack = new Object();
-	dataPack.menu_no = menu_no;
-	var ajaxResult = ajaxHelper("/halal/MenuDetail", {"paramPack" : JSON.stringify(dataPack)});
-
-	ajaxResult.success(function(data){
-		var restaurantVo = data.restaurantVo;
-		if(!restaurantVo == null || !restaurantVo == ""){
-			
-			$("#menuContent").empty();
-			$("#menuContent").append(restaurantVo.menu_img);
-			$("#menuContent").append(restaurantVo.menu_content);
-			$("#menuDetail").modal('toggle');
-
-		} else{
-			alert("못가져옴");
-		}
-	});
-
-	alert(getCookie());
-}
-*/
 
 //쿠키 생성
 function setCookie(cName, cValue, cDay){

@@ -119,7 +119,7 @@ public class MainController {
 			case "/restaurant/detail_page" :
 				return "redirect:/halal/RestaurantList";
 			case "/order/cart" :
-				return "redirect:/halal/Index";
+				return "redirect:/halal/CheckOut";
 			default :
 				return "redirect:/halal/RestaurantList";
 			}

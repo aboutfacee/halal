@@ -11,6 +11,9 @@
     <meta charset="utf-8">
     <title>Halal Oppa</title>
 	<jsp:include page="/jsp/com/topDeclare.jsp" />
+	<script src="/common/assets/js/jquery-ajaxHelper.js"></script> <!-- ajax 선언 -->
+	
+	<c:set var="cart" value="${resultMap.cartVO}" />
 </head>
 
 <body>
@@ -81,7 +84,7 @@
 					<h2 class="inner">Your order details</h2>
 					
 					<c:if test="${empty userInfo.email}">
-						<form action="/halal/MemberJoin" id="myRegister" method="post">
+						<form action="/halal/OrderMemberJoin" id="myRegister" method="post">
 							<div class="row">
 								<div class="col-md-6 col-sm-6">
 									<div class="form-group">
@@ -95,7 +98,7 @@
 								<div class="col-md-6 col-sm-6">
 									<div class="form-group">
 										<label>Name</label>
-										<input type="text" class="form-control" id="name" name="name" placeholder="Your Name">
+										<input type="text" class="form-control" id="mem_name" name="mem_name" placeholder="Your Name">
 									</div>
 								</div>
 							</div>
@@ -113,7 +116,7 @@
 								<div class="col-md-2 col-sm-2">
 									<div class="form-group">
 										<label>Country Code</label>
-										<select class="form-control" name="contryCode" id="contryCode">
+										<select class="form-control" name="country_code" id="country_code">
 											<option value="" selected>Code</option>
 											<option value="Korea">+082</option>
 											<option value="Korea">+082</option>
@@ -123,7 +126,7 @@
 								<div class="col-md-4 col-sm-4">
 									<div class="form-group">
 										<label>Your Telephone</label>
-										<input type="text" class="form-control" id="telephone" name="telephone" placeholder="Your Telephone">
+										<input type="text" class="form-control" id="phone" name="phone" placeholder="Your Telephone">
 									</div>
 								</div>
 							</div>
@@ -132,7 +135,7 @@
 								<div class="col-md-2 col-sm-2">
 									<div class="form-group">
 										<label>SNS Name</label>
-										<select class="form-control" name="snsName" id="snsName">
+										<select class="form-control" name="social_name" id="social_name">
 											<option value="" selected>SNS</option>
 											<option value="Line">Line</option>
 											<option value="Facebook">Facebook</option>
@@ -142,7 +145,7 @@
 								<div class="col-md-4 col-sm-4">
 									<div class="form-group">
 										<label>Your ID</label>
-										<input type="text" class="form-control" id="snsID" name="snsID" placeholder="Your ID">
+										<input type="text" class="form-control" id="social_id" name="social_id" placeholder="Your ID">
 									
 									</div>
 								</div>
@@ -151,7 +154,7 @@
 								<div class="col-md-6 col-sm-6">
 									<div class="form-group">
 										<div>
-											<a href="detail_page.html" class="btn_3">Sign in</a>
+											<button style="submit" class="btn_3">Sign in</button>
 										</div>
 									</div>
 								</div>
@@ -159,15 +162,19 @@
 					</form>
 					</c:if>
 	                
+	                
+	                <form id="setCart" method="post">
+	                
 					<div class="row">
 						<div class="col-md-3 col-sm-3">
 							<div class="form-group">
 								<label>Stay</label>
 								<select class="form-control" name="stay" id="stay">
 									<option value="" selected>Stay</option>
-									<option value="zaza">zaza</option>
-									<option value="yaya">yaya</option>
-									<option value="direct">Direct Input</option>
+									<c:forEach var="hotelVO" items="${resultMap.hotelVO}" varStatus="status">
+									<option value="${hotelVO.hotel_address }">${hotelVO.hotel_name }</option>
+									</c:forEach>
+									<option value="manual">Direct input</option>
 								</select>
 							</div>
 						</div>
@@ -206,15 +213,10 @@
 					<hr>
 					<div class="row">
 						<div class="col-md-12">
-				
 								<label>Notes</label>
 								<textarea class="form-control" style="height:150px" placeholder="Ex. Allergies, cash change..." name="notes" id="notes"></textarea>
-				
 						</div>
 					</div>
-					
-					
-					
 				</div><!-- End box_style_1 -->
 			</div><!-- End col-md-8 -->
             
@@ -224,43 +226,7 @@
 					<table class="table table_summary">
 					<tbody>
 					<tr>
-						<td>
-							<a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>1x</strong> Enchiladas
-						</td>
-						<td>
-							<strong class="pull-right">$11</strong>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>2x</strong> Burrito
-						</td>
-						<td>
-							<strong class="pull-right">$14</strong>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>1x</strong> Chicken
-						</td>
-						<td>
-							<strong class="pull-right">$20</strong>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>2x</strong> Corona Beer
-						</td>
-						<td>
-							<strong class="pull-right">$9</strong>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>2x</strong> Cheese Cake
-						</td>
-						<td>
-							<strong class="pull-right">$12</strong>
+						<td id="addCart">
 						</td>
 					</tr>
 					</tbody>
@@ -269,18 +235,17 @@
 					<table class="table table_summary">
 					<tbody>
 					<tr>
-						<td>
-							 Subtotal <span class="pull-right">$56</span>
+						<td id="subTotal">
 						</td>
 					</tr>
 					<tr>
 						<td>
-							 Delivery fee <span class="pull-right">$10</span>
+							 Delivery fee <span class="pull-right">20000 KRW</span>
 						</td>
 					</tr>
 					<tr>
 						<td class="total">
-							 TOTAL <span class="pull-right">$66</span>
+							 TOTAL <span class="pull-right" id="total"> 20000 KRW</span>
 						</td>
 					</tr>
 					</tbody>
@@ -288,6 +253,9 @@
 					<hr>
 					<a class="btn_full" href="/jsp/order/cart_2.jsp">Go to checkout</a>
 					<a class="btn_full_outline" href="/jsp/restaurant/detail_page.jsp"><i class="icon-right"></i> Add other items</a>
+					
+					</form><!-- 장소 날짜 시간 -->
+					
 				</div><!-- End cart_box -->
 			</div><!-- End col-md-4 -->
             
@@ -302,6 +270,77 @@
 
 <!-- SPECIFIC SCRIPTS -->
 <script src="/common/assets/js/jquery.pin.min.js"></script><script>$("#cart_box").pin({padding: {top: 80, bottom: 25},minWidth: 1100, containerSelector: "#container_pin"})</script>
-
 </body>
+<script>
+
+
+(function()
+{
+	var dataPack = new Object();
+	dataPack.cart_no = getCookie('cart');
+	var ajaxResult = ajaxHelper("/halal/CheckOutTotal", {"paramPack" : JSON.stringify(dataPack)});
+
+	ajaxResult.success(function(data){
+	var resultVO = data.resultVO;
+	
+	$("#addCart").empty();
+	
+	var cart = "";
+	var sum = 0;
+
+	for (var i in resultVO){
+		if(resultVO[i].count == 0) 
+			continue;
+		cart += "<strong>"+ resultVO[i].count+"x &nbsp</strong>";
+		cart += "<span>" + resultVO[i].menu_name + "</span>"
+		cart += "<strong class='pull-right'>" + resultVO[i].count*resultVO[i].menu_price + " KRW</strong><br>";
+		sum += resultVO[i].count*resultVO[i].menu_price;
+	}
+	$("#addCart").append(cart);
+		
+	$("#subTotal").empty();
+	var subTotal = "";
+	subTotal += "Subtotal <span class='pull-right'>" + sum + " KRW</span>"
+	$("#subTotal").append(subTotal);
+	
+	$("#total").empty();
+	$("#total").append(sum + 20000 + " KRW");
+		
+	})
+})();
+
+function getCookie(cName) {
+    cName = cName + '=';
+    var cookieData = document.cookie;
+    var start = cookieData.indexOf(cName);
+    var cValue = '';
+    if(start != -1){
+        start += cName.length;
+        var end = cookieData.indexOf(';', start);
+        if(end == -1)end = cookieData.length;
+        cValue = cookieData.substring(start, end);
+    }
+    return unescape(cValue);
+} 
+$(function(){
+	/* 검색 구분항목에 따른 정보노출 */
+	$("#stay").change(function(){
+		var selVal = $("#stay").val();
+		if(selVal == "manual"){
+			$("#address").removeAttr('disabled');
+			$("#address").val("");
+		}
+		else{
+			$("#address").attr({
+                'disabled': 'disabled'
+            });
+			$("#address").empty();
+			$("#address").val(selVal);
+		}
+		
+		$("#deliveryDay").val("2016/11/11");
+		$("#deliveryTime").val("11:11:11");
+	});
+});
+</script>
 </html>

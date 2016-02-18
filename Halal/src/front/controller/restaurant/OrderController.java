@@ -17,12 +17,15 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.session.AdminLoginProc;
 import com.util.CookieUtil;
 import com.util.PageNavigation;
 import com.util.StringUtil;
 
+import front.vo.HotelVO;
+import front.vo.MemberVO;
 import front.vo.RestaurantVO;
 import net.sf.json.JSONObject;
 
@@ -93,4 +96,54 @@ public class OrderController {
 		ModelAndView mav = new ModelAndView("jsonView", resultMap);
 		return mav;
 	}
+	
+	// 주문하기
+	@RequestMapping("/CheckOut")
+	public ModelAndView CheckOut(HttpServletRequest request, HttpServletResponse response, RestaurantVO paramVO) {
+		
+		List<RestaurantVO> cartVO = sqlSession.selectList("order.selCart", paramVO);
+		List<HotelVO> hotelVO = sqlSession.selectList("hotel.selHotel", paramVO);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("cartVO", cartVO);
+		resultMap.put("hotelVO", hotelVO);
+		ModelAndView mav = new ModelAndView("/order/cart", "resultMap", resultMap);
+		return mav;
+	}
+	
+	// 주문하기
+	@RequestMapping("/CheckOutTotal")
+	public ModelAndView CheckOutTotal(HttpServletRequest request, HttpServletResponse response, RestaurantVO paramVO) {
+
+		String dataPack = request.getParameter("paramPack");
+		JSONObject dataObj = JSONObject.fromObject(dataPack);
+		HashMap jasonMap = (HashMap)JSONObject.toBean(dataObj, HashMap.class);
+		
+		paramVO.setCart_no(jasonMap.get("cart_no").toString());
+		List<RestaurantVO> result = sqlSession.selectList("order.selCart", paramVO);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("resultVO", result);
+		
+		ModelAndView mav = new ModelAndView("jsonView", resultMap);
+		return mav;
+	}
+	
+	// 회원 가입
+	@RequestMapping("/OrderMemberJoin")
+	public String OrderMemberJoin(HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttr, MemberVO paramVO) throws DataAccessException, SQLException, IOException{
+		response.setCharacterEncoding("utf-8");
+		paramVO.setPwd(StringUtil.encrypt(paramVO.getPwd()));
+		
+		sqlSession.insert("member.insMember", paramVO);
+		
+		loginProc.setSession(request, paramVO.getEmail(), paramVO.getPwd(), sqlSession);
+
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("paramVO", paramVO);
+		
+		redirectAttr.addFlashAttribute("resultMap", resultMap);
+		
+		return "redirect:/halal/CheckOut";		
+
+	}
+	
 }

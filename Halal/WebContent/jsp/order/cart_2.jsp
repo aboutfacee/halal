@@ -81,19 +81,11 @@
 						<label><input type="radio" value="" checked name="payment_method" class="icheck">Credit card</label>
 						<i class="icon_creditcard"></i>
 					</div>
-					ê²°ì  ì ì£¼ìì¬í­
-					
-					<!-- 
-					<div class="payment_select" id="paypal">
-						<label><input type="radio" value="" name="payment_method" class="icheck">Pay with paypal</label>
-					</div> 
-					-->
-					
+										
 					<div class="payment_select nomargin">
 						<label><input type="radio" value="" name="payment_method" class="icheck">Pay with cash</label>
 						<i class="icon_wallet"></i>
 					</div>
-					ê²°ì  ì ì£¼ìì¬í­
 				</div><!-- End box_style_1 -->
 			</div><!-- End col-md-8 -->
             
