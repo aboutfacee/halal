@@ -89,7 +89,7 @@
 							<td onclick="goMenuDetail(${menuList.menu_no })">
 								<div id="menuThumb" data-toggle="modal" >
 									<h4>${menuList.menu_name }</h4>
-									<img src="/common/img/thumb_restaurant.jpg" alt="">
+									<img src="/common/img/thumb_restaurant.jpg" class="pull-left" alt="">
 									${menuList.menu_summ }
 								</div>
 							</td>
@@ -137,10 +137,10 @@
 					</tbody>
 					</table>
 					<hr>
-					
+
 					<form id="checkOut" name="checkOut" method="post" action="/halal/CheckOut">
 						<input type="hidden" name="cart_no" value="${cart.cart_no}" />
-						<button type="submit" class="btn_full">Order now</button>
+						<button type="submit" class="btn_full" id="orderBtn" disabled>Order now</button>
 					</form>
 					
 				</div><!-- End cart_box -->
@@ -224,6 +224,8 @@ function addCart(menu_no, cart_no)
 		
 		$("#total").empty();
 		$("#total").append(sum + 20000 + " KRW");
+		$("#orderBtn").removeAttr('disabled');
+		$("#orderBtn").css("background", "#ec008c");
 		
 	})
 }
@@ -260,7 +262,12 @@ function deleteMenu(menu_no, cart_no)
 		
 		$("#total").empty();
 		$("#total").append(sum + 20000 + " KRW");
-		
+		if(sum==0)
+		{
+			$("#orderBtn").attr({
+                'disabled': 'disabled'
+            });
+			$("#orderBtn").css("background", "black");		}
 	})
 }
 
@@ -315,7 +322,10 @@ function getCookie(cName) {
 (function(){
  	var cart = ${cart.cart_no};
 	setCookie('cart', cart, 1);
+	$("#orderBtn").css("background", "black");
 })();
+
+
 </script>
 
 </body>

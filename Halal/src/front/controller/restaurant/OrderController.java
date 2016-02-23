@@ -15,6 +15,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -146,4 +147,15 @@ public class OrderController {
 
 	}
 	
+	// 지불 방법
+	@RequestMapping("/SelPayment")
+	public ModelAndView SelPayment(HttpServletRequest request, HttpServletResponse response, RestaurantVO paramVO, ModelMap model) {
+		
+		
+		List<RestaurantVO> cartVO = sqlSession.selectList("order.selCart", paramVO);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("cartVO", cartVO);
+		ModelAndView mav = new ModelAndView("/order/cart_2", "resultMap", resultMap);
+		return mav;
+	}
 }

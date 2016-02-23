@@ -80,11 +80,10 @@
 	<div id="container_pin">
 		<div class="row">
 			<div class="col-md-8">
+				<c:if test="${empty userInfo.email}">
 				<div class="box_style_2" id="order_process">
-					<h2 class="inner">Your order details</h2>
-					
-					<c:if test="${empty userInfo.email}">
-						<form action="/halal/OrderMemberJoin" id="myRegister" method="post">
+					<h2 class="inner">Sign in</h2>
+						<form id="myRegister" method="post">
 							<div class="row">
 								<div class="col-md-6 col-sm-6">
 									<div class="form-group">
@@ -150,75 +149,91 @@
 									</div>
 								</div>
 							</div>
+							</form>
 							<div class="row">
 								<div class="col-md-6 col-sm-6">
 									<div class="form-group">
 										<div>
-											<button style="submit" class="btn_3">Sign in</button>
+											<button type="button" class="btn_3" onclick="SignInBtn()">Sign in</button>
 										</div>
 									</div>
 								</div>
 							</div>
-					</form>
-					</c:if>
+	                </div><!-- End box_style_1 -->
+	                </c:if>
 	                
-	                
-	                <form id="setCart" method="post">
-	                
-					<div class="row">
-						<div class="col-md-3 col-sm-3">
-							<div class="form-group">
-								<label>Stay</label>
-								<select class="form-control" name="stay" id="stay">
-									<option value="" selected>Stay</option>
-									<c:forEach var="hotelVO" items="${resultMap.hotelVO}" varStatus="status">
-									<option value="${hotelVO.hotel_address }">${hotelVO.hotel_name }</option>
-									</c:forEach>
-									<option value="manual">Direct input</option>
-								</select>
+      				<div class="box_style_2" >
+                        <h2 class="inner">Your stay</h2>
+      	                <form id="setCart" method="post">
+						<div class="row">
+							<div class="col-md-3 col-sm-3">
+								<div class="form-group">
+									<label>Stay</label>
+									<select class="form-control" name="stay" id="stay">
+										<option value="" selected>Stay</option>
+										<c:forEach var="hotelVO" items="${resultMap.hotelVO}" varStatus="status">
+										<option value="${hotelVO.hotel_address }">${hotelVO.hotel_name }</option>
+										</c:forEach>
+										<option value="manual">Direct input</option>
+									</select>
+								</div>
 							</div>
 						</div>
-					</div>
+						
+						<div class="row">
+							<div class="col-md-8 col-sm-8">
+								<div class="form-group">
+									<label>Address</label>
+									<input type="text" class="form-control" id="address" name="address" disabled>
+								</div>
+							</div>
+							<div class="col-md-2 col-sm-2">
+								<div class="form-group">
+									<label>Room Number</label>
+									<input type="text" class="form-control" id="roomNum" name="roomNum" placeholder="Room">							
+								</div>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col-md-3 col-sm-3">
+								<div class="form-group">
+									<label>Delivery Day</label>
+									<input type="text" class="form-control" id="deliveryDay" name="deliveryDay" disabled>							
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-3">
+								<div class="form-group">
+									<label>Delivery time</label>
+									<input type="text" class="form-control" id="deliveryTime" name="deliveryTime" disabled>		
+								</div>
+							</div>
+						</div>
+						
+						<hr>
+						<div class="row">
+							<div class="col-md-12">
+									<label>Notes</label>
+									<textarea class="form-control" style="height:150px" placeholder="Ex. Allergies, cash change..." name="notes" id="notes"></textarea>
+									<br>
+							</div>
+						</div>
+						</form>
+					</div><!-- End box_style_1 -->
 					
-					<div class="row">
-						<div class="col-md-8 col-sm-8">
-							<div class="form-group">
-								<label>Address</label>
-								<input type="text" class="form-control" id="address" name="address" disabled>
-							</div>
-						</div>
-						<div class="col-md-2 col-sm-2">
-							<div class="form-group">
-								<label>Room Number</label>
-								<input type="text" class="form-control" id="roomNum" name="roomNum" placeholder="Room">							
-							</div>
-						</div>
+				<div class="box_style_2" >
+					<h2 class="inner">Payment methods</h2>
+					<div class="payment_select">
+						<label><input type="radio" value="" checked name="payment_method" class="icheck">Credit card</label>
+						<i class="icon_creditcard"></i>
 					</div>
-					
-					<div class="row">
-						<div class="col-md-3 col-sm-3">
-							<div class="form-group">
-								<label>Delivery Day</label>
-								<input type="text" class="form-control" id="deliveryDay" name="deliveryDay" disabled>							
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-3">
-							<div class="form-group">
-								<label>Delivery time</label>
-								<input type="text" class="form-control" id="deliveryTime" name="deliveryTime" disabled>		
-							</div>
-						</div>
-					</div>
-					
-					<hr>
-					<div class="row">
-						<div class="col-md-12">
-								<label>Notes</label>
-								<textarea class="form-control" style="height:150px" placeholder="Ex. Allergies, cash change..." name="notes" id="notes"></textarea>
-						</div>
+					<div class="payment_select nomargin">
+						<label><input type="radio" value="" name="payment_method" class="icheck">Pay with cash</label>
+						<i class="icon_wallet"></i>
 					</div>
 				</div><!-- End box_style_1 -->
 			</div><!-- End col-md-8 -->
+			
             
 			<div class="col-md-4">
 				<div id="cart_box">
@@ -251,10 +266,10 @@
 					</tbody>
 					</table>
 					<hr>
-					<a class="btn_full" href="/jsp/order/cart_2.jsp">Go to checkout</a>
+					<button type="button" id="goToCheckOut" class="btn_full" onclick="CheckOutBtn()">Go to checkout</button>
 					<a class="btn_full_outline" href="/jsp/restaurant/detail_page.jsp"><i class="icon-right"></i> Add other items</a>
 					
-					</form><!-- 장소 날짜 시간 -->
+					<!-- 장소 날짜 시간 -->
 					
 				</div><!-- End cart_box -->
 			</div><!-- End col-md-4 -->
@@ -322,6 +337,24 @@ function getCookie(cName) {
     }
     return unescape(cValue);
 } 
+
+function CheckOutBtn(){
+	var varForm = document.getElementById("setCart");
+	varForm.hotel_address = document.getElementById("address").value;
+	varForm.action = "<c:url value='/halal/SelPayment'/>";
+	varForm.submit();
+
+}
+
+function SignInBtn(){
+	
+	var varForm = document.getElementById("myRegister");
+	varForm.action = "<c:url value='/halal/OrderMemberJoin'/>";
+	varForm.submit();
+}
+
+
+
 $(function(){
 	/* 검색 구분항목에 따른 정보노출 */
 	$("#stay").change(function(){
@@ -341,6 +374,8 @@ $(function(){
 		$("#deliveryDay").val("2016/11/11");
 		$("#deliveryTime").val("11:11:11");
 	});
+	
+	
 });
 </script>
 </html>
